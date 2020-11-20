@@ -22,7 +22,7 @@ public class Todo {
     private Boolean done;
 
     @Column
-    private LocalDateTime createdate;
+    private LocalDateTime createDate;
 
     @Column
     private LocalDateTime doneDate;
