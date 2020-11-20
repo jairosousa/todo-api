@@ -1,5 +1,6 @@
 package io.jairosousa.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,15 +17,22 @@ public class Todo {
     private Long id;
 
     @Column
-    private String descriptions;
+    private String description;
 
     @Column
     private Boolean done;
 
     @Column
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime createDate;
 
     @Column
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime doneDate;
+
+    @PrePersist
+    public void beforeSave() {
+        setCreateDate(LocalDateTime.now());
+    }
 
 }
