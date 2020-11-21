@@ -27,4 +27,8 @@ export class TodoService {
   deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${this.endpoint}/${id}`);
   }
+
+  marcarComoConcluido(id: number): Observable<Todo> {
+    return this.http.patch<Todo>(`${this.apiUrl}/${this.endpoint}/${id}/done`, {});
+  }
 }
