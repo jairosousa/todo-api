@@ -12,6 +12,8 @@ export class AppComponent {
 
   title = 'todo-app';
 
+  todos: Todo[] = [];
+
   constructor(
     private service: TodoService
   ) { }
@@ -21,13 +23,11 @@ export class AppComponent {
   });
 
   submit() {
-    console.log(this.form.value);
-
     const todo: Todo = { ...this.form.value };
     this.service.salvar(todo)
       .subscribe(todo => {
+        this.todos.push(todo)
         this.form.reset();
-        console.log(todo)
       });
   }
 }
