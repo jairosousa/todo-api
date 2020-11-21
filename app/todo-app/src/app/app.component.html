@@ -11,7 +11,7 @@
                 <input formControlName="description" type="text" class="form-control">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn btn-md btn-primary">Add</button>
+                <button [disabled]="!form.get('description').valid" type="submit" class="btn btn-md btn-primary">Add</button>
             </div>
         </div>
     </form>
