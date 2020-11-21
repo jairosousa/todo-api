@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Todo } from './todo';
 import { TodoService } from './todo.service';
@@ -8,7 +8,7 @@ import { TodoService } from './todo.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'todo-app';
 
@@ -17,6 +17,11 @@ export class AppComponent {
   constructor(
     private service: TodoService
   ) { }
+
+  ngOnInit(): void {
+    this.service.listar()
+      .subscribe(todos => this.todos = todos);
+  }
 
   form: FormGroup = new FormGroup({
     description: new FormControl('')

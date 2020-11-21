@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/todos")
@@ -24,5 +26,10 @@ public class TodoController {
     public Todo getById(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping
+    public List<Todo> getAll() {
+        return repository.findAll();
     }
 }
