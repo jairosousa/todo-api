@@ -3,6 +3,7 @@ package io.jairosousa.todo.controller;
 import io.jairosousa.todo.model.Todo;
 import io.jairosousa.todo.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -31,7 +32,9 @@ public class TodoController {
 
     @GetMapping
     public List<Todo> getAll() {
-        return repository.findAll();
+        Sort sort = Sort.by(Sort.Direction.ASC,"done")
+                .and(Sort.by(Sort.Direction.DESC,"doneDate"));
+        return repository.findAll(sort);
     }
 
     @DeleteMapping("{id}")

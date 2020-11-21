@@ -36,8 +36,12 @@ export class AppComponent implements OnInit {
     this.service.salvar(todo)
       .subscribe(todo => {
         this.todos.push(todo)
+        this.ordenarTodos();
         this.form.reset();
       });
+  }
+  ordenarTodos() {
+    this.todos = this.todos.sort((a, b) => ((a.done < b.done)) ? -1 : 1);
   }
 
   delete(todo: Todo) {
@@ -54,6 +58,7 @@ export class AppComponent implements OnInit {
         next: (todoAtualizado) => {
           todo.done = todoAtualizado.done
           todo.doneDate = todoAtualizado.doneDate
+          this.ordenarTodos()
         }
       })
   }
