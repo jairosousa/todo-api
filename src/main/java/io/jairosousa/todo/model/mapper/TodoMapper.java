@@ -2,16 +2,16 @@ package io.jairosousa.todo.model.mapper;
 
 import io.jairosousa.todo.model.Todo;
 import io.jairosousa.todo.model.TodoDTO;
-import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-@Service
+
 public class TodoMapper {
 
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm", Locale.getDefault());
+    static Locale locale = new Locale("pt", "BR");
+    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm", locale);
 
     public static TodoDTO toDTO(Todo todo) {
         return TodoDTO.builder()
