@@ -3,7 +3,7 @@
 </nav>
 <main role="main" class="container">
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-dark rounded shadow-sm">
-        <img class="mr-3" src="/todo-api/assets/img/logo2.svg" alt="" width="48" height="48">
+        <img class="mr-3" src="assets/img/logo2.svg" alt="" width="48" height="48">
         <div class="lh-100">
             <h6 class="mb-0 text-white lh-100">Task</h6>
             <small>Since 2020</small>
@@ -32,8 +32,8 @@
                     <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
                 </ng-template>
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="{{ todo.done ? 'done' : ''}} d-block text-gray-dark">{{todo.description}}</strong> {{todo.createDate}}
-                    <span class="text-primary">{{todo.doneDate}}</span>
+                    <strong class="{{ todo.done ? 'done' : ''}} d-block text-gray-dark">{{todo.description}}</strong> {{todo.createDate | date:'dd/MM/yyyy HH:mm'}}
+                    <span class="text-primary">{{todo.doneDate | date:'dd/MM/yyyy HH:mm' }}</span>
                 </p>
                 <div class="btn-group mr-3" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-sm btn-success" [disabled]="todo.done" (click)="done(todo)">Done</button>

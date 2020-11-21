@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://jns-todo-api.herokuapp.com',
+  url: 'http://localhost:8080',
   endpointTodo: 'api/todos'
 };
 
