@@ -1,34 +1,50 @@
 <nav class="navbar navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Todo app</a>
 </nav>
-
-<div class="container mt-4">
-    <h3>Todos</h3>
-    <hr/>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="row">
-            <div class="col-md-6">
-                <input formControlName="description" type="text" class="form-control">
-            </div>
-            <div class="col-md-2">
-                <button [disabled]="!form.get('description').valid" type="submit" class="btn btn-md btn-primary">Add</button>
-            </div>
-        </div>
-    </form>
-
-    <hr class="mb-4 mt-4" />
-
-    <div class="row">
-        <div class="col-md-8">
-            <ul class="list-group">
-                <li *ngFor="let todo of todos" class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="{{ todo.done ? 'done' : ''}}">{{todo.description}} {{todo.doneDate}}</span>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-sm btn-success" [disabled]="todo.done" (click)="done(todo)">Done</button>
-                        <button type="button" class="btn btn-sm btn-danger" (click)="delete(todo)">Delete</button>
-                    </div>
-                </li>
-            </ul>
+<main role="main" class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-dark rounded shadow-sm">
+        <img class="mr-3" src="/assets/img/logo2.svg" alt="" width="48" height="48">
+        <div class="lh-100">
+            <h6 class="mb-0 text-white lh-100">Task</h6>
+            <small>Since 2020</small>
         </div>
     </div>
-</div>
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Novas</h6>
+        <form [formGroup]="form" (ngSubmit)="submit()" class="mt-3 mb-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <input formControlName="description" type="text" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <button [disabled]="!form.get('description').valid" type="submit" class="btn btn-md btn-primary">Add</button>
+                </div>
+            </div>
+        </form>
+
+        <h6 class="border-bottom border-gray pb-2 mb-0">Tarefas</h6>
+        <div *ngFor="let todo of todos">
+            <div class="media text-muted pt-3">
+                <div *ngIf="!todo.done; else elseBlock">
+                    <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"/><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+                </div>
+                <ng-template #elseBlock>
+                    <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                </ng-template>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="{{ todo.done ? 'done' : ''}} d-block text-gray-dark">{{todo.description}}</strong> {{todo.createDate}}
+                    <span class="text-primary">{{todo.doneDate}}</span>
+                </p>
+                <div class="btn-group mr-3" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-sm btn-success" [disabled]="todo.done" (click)="done(todo)">Done</button>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="delete(todo)">Delete</button>
+                </div>
+            </div>
+
+        </div>
+
+        <small class="d-block text-right mt-3">
+          <a href="#">All updates</a>
+        </small>
+    </div>
+</main>
