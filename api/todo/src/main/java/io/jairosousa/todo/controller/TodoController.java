@@ -32,4 +32,9 @@ public class TodoController {
     public List<Todo> getAll() {
         return repository.findAll();
     }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }

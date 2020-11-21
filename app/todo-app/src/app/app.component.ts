@@ -19,6 +19,10 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.listarTodos();
+  }
+
+  listarTodos() {
     this.service.listar()
       .subscribe(todos => this.todos = todos);
   }
@@ -34,5 +38,13 @@ export class AppComponent implements OnInit {
         this.todos.push(todo)
         this.form.reset();
       });
+  }
+
+  delete(todo: Todo) {
+    this.service.deletar(todo.id)
+      .subscribe({
+        next: (response) => this.listarTodos()
+      })
+
   }
 }
