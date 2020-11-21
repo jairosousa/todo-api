@@ -25,6 +25,9 @@ export class AppComponent {
 
     const todo: Todo = { ...this.form.value };
     this.service.salvar(todo)
-      .subscribe(todo => console.log(todo));
+      .subscribe(todo => {
+        this.form.reset();
+        console.log(todo)
+      });
   }
 }
